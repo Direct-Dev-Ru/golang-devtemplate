@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "database": "containerized_dev",
+            "username": "postgres",
+            "password": "postgres postgres",
+            "name": "containerized_dev"
+        }
+    ]
+}

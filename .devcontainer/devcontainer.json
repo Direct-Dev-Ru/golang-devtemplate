@@ -1,0 +1,61 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.205.2/containers/go
+{
+	"name": "Go",
+    "dockerComposeFile": "docker-compose.yaml",
+	"service": "app",
+	"workspaceFolder": "/workspace/containerized-dev",
+	"runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"go.toolsManagement.checkForUpdates": "local",
+		"go.useLanguageServer": false,
+		"go.gopath": "/go",
+		"go.goroot": "/usr/local/go",
+        "terminal.integrated.shell.linux": "/bin/zsh",
+		"workbench.colorTheme": "Winter is Coming (Dark Black)",
+        
+		"sqltools.connections": [{
+			"name": "Container database",
+			"driver": "PostgreSQL",
+			"previewLimit": 50,
+			"server": "localhost",
+			"port": 5432,
+			"database": "containerized_dev",
+			"username": "postgres",
+			"password": "postgres"
+		}]
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"golang.Go",
+        "mtxr.sqltools",
+		"mtxr.sqltools-driver-pg",
+        // "dbaeumer.vscode-eslint",
+		"naumovs.color-highlight",
+		"donjayamanne.githistory",
+		"eamodio.gitlens",
+		"ritwickdey.liveserver",
+		"ms-vsliveshare.vsliveshare",
+		"esbenp.prettier-vscode",
+		"visualstudioexptteam.vscodeintellicode",
+		"pkief.material-icon-theme",
+		"johnpapa.winteriscoming"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [6000],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "git config --global user.name 'direct-dev-ru' && git config --global user.email 'info@direct-dev.ru'",
+
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+	"features": {
+		"git": "latest",
+		"github-cli": "latest",
+		"sshd": "latest"
+	}
+}
